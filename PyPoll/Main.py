@@ -1,10 +1,10 @@
-# Modules
 import os
 import csv
+from pathlib import Path
 
 # Create lists for Election Result
 Votelist=[]
-totalvotes = 0 # counter for total votes 
+totalvotes = 0 
 
 # Create list of variables for unique candidates
 Candidates=[]
@@ -12,10 +12,10 @@ Candidatevotecount=[]
 Candidatevotepct=[]
 
 # Set path for the file
-election_data = os.path.join(os.getcwd(),"PyPoll","Resources","election_data.csv")
-outputfile = os.path.join(os.getcwd(),"PyPoll","Analysis","PyPoll.txt")
+election_data = os.path.join(Path.home(),"Bootcamp-Homework/Challenge_Python/PyPoll/Resources","election_data.csv")
+output_file = os.path.join(Path.home(),"Bootcamp-Homework/Challenge_Python/PyPoll/Analysis","PyPoll.txt")
 
-#Read csv
+# Read csv
 with open(election_data) as csvfile:
     csvreader=csv.reader(csvfile, delimiter =',')
     header=next(csvreader)
@@ -23,6 +23,7 @@ with open(election_data) as csvfile:
         Votelist.append(row[2])
 
 totalvotes = len(Votelist)
+
 # Print Total votes in Election Results
 print("Election Results")
 print("--------------------------")
@@ -59,7 +60,7 @@ print("---------------------------")
 
 # Output to text file 
 
-with open(outputfile, 'w') as output:
+with open(output_file, 'w') as output:
     output.write("Election Results\n")
     output.write("-"*50+"\n")
     output.write(f"Total Votes: {totalvotes}\n")
